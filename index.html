@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Quản trị shop mỹ phẩm online</title>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f5f8f6;--card:#fff;--ink:#14261d;--mute:#6a7d72;--line:#e2ebe5;--acc:#0f7a4d;--acc2:#e1f3ea;--ok:#13804f;--wn:#b7791f;--bad:#c62f46;--bb:#fde8ec;--wb:#fdf1d8;--on:#fff;--sh:0 1px 2px rgba(16,40,28,.05),0 4px 14px rgba(16,40,28,.05);box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#0e1814;--card:#16241d;--ink:#e6f1ea;--mute:#9db3a5;--line:#2a3f33;--acc:#4fc08a;--acc2:#21402f;--ok:#5cc08f;--wn:#e0b050;--bad:#ef7b73;--bb:#3a1d24;--wb:#3a2f16;--on:#0b1f15}}
+:root[data-theme=dark]{--bg:#0e1814;--card:#16241d;--ink:#e6f1ea;--mute:#9db3a5;--line:#2a3f33;--acc:#4fc08a;--acc2:#21402f;--ok:#5cc08f;--wn:#e0b050;--bad:#ef7b73;--bb:#3a1d24;--wb:#3a2f16;--on:#0b1f15}
+*{box-sizing:border-box}html,body{height:100%}
+body{margin:0;font:14px/1.5 'Be Vietnam Pro',system-ui,sans-serif;background:var(--bg);color:var(--ink);display:flex;flex-direction:column;min-height:100%}
+#hd{background:linear-gradient(90deg,#0c5a39,#0a4d32);color:#fff;display:flex;align-items:center;gap:18px;padding:14px 32px}
+.brand{display:flex;gap:12px;align-items:center;min-width:0}.bi{width:46px;height:46px;border-radius:12px;background:#1fc58a;display:grid;place-items:center;font-size:24px;flex-shrink:0}
+.brand b{font-size:20px;white-space:nowrap}.brand em{font-style:normal;font-size:10.5px;background:rgba(255,255,255,.18);padding:1px 7px;border-radius:6px;margin-left:8px;vertical-align:middle}.brand small{display:block;font-size:12px;opacity:.8}
+.srch{flex:1;max-width:620px;position:relative;margin:0 auto}.srch input{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:#fff;border-radius:12px;padding:11px 54px 11px 42px}.srch input::placeholder{color:rgba(255,255,255,.7)}
+.srch span{position:absolute;left:15px;top:50%;transform:translateY(-50%);opacity:.85}.srch kbd{position:absolute;right:12px;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.18);border-radius:6px;padding:0 8px;font:12px/20px inherit}
+.chip{display:flex;gap:8px;align-items:center;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);border-radius:12px;padding:6px 12px;font-size:12px;line-height:1.25;white-space:nowrap}.chip b{display:block;font-size:14px}
+.user{display:flex;gap:10px;align-items:center;white-space:nowrap;font-size:12px}.user b{display:block;font-size:14px}.av{width:40px;height:40px;border-radius:50%;background:#1fc58a;display:grid;place-items:center;font-weight:700;color:#06301d}
+#gn{background:#08452c;display:flex;gap:6px;padding:8px 32px;overflow-x:auto}
+#gn button{background:none;color:#cfe9db;border-radius:10px;padding:8px 16px;white-space:nowrap}#gn button.on{background:#0f6b45;color:#fff;font-weight:700;box-shadow:inset 0 0 0 1px rgba(255,255,255,.2)}
+#sn{display:flex;gap:6px;padding:10px 32px;align-items:center;overflow-x:auto;background:var(--card);border-bottom:1px solid var(--line)}
+#sn button{background:none;color:var(--ink);border-radius:99px;padding:6px 16px;white-space:nowrap}#sn button.on{background:var(--acc2);color:var(--acc);font-weight:500}#sn .sy{margin-left:auto;font-size:12.5px;color:var(--mute);white-space:nowrap;padding-left:16px}
+main{flex:1;min-width:0;padding:28px 32px}
+h3{margin:0 0 10px}.mute{color:var(--mute);font-size:12.5px}
+.ph{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;margin-bottom:18px}.ph h2{margin:0;font-size:28px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}.ph h2 span{font-size:12.5px;font-weight:400;color:var(--mute);border:1px solid var(--line);background:var(--card);border-radius:8px;padding:1px 10px}.ph p{margin:4px 0 0;color:var(--mute)}.ph .ac{display:flex;gap:10px;flex-wrap:wrap}
+.bar{display:flex;gap:8px;align-items:center;margin-bottom:12px;flex-wrap:wrap}.bar .sp{flex:1}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;box-shadow:var(--sh)}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px;margin-bottom:16px}.stats span,.stats em{color:var(--mute);font-size:13px;font-style:normal}.stats b{display:block;font-size:28px;line-height:1.3}.stats small{font-size:13px;color:var(--mute);font-weight:400}
+.ci{display:flex;justify-content:space-between;align-items:center;gap:10px}.ci em{display:block;font-size:12.5px;font-weight:500}.ib{width:48px;height:48px;border-radius:12px;display:grid;place-items:center;font-size:22px;flex-shrink:0}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
+.fl{display:flex;gap:12px;align-items:center;flex-wrap:wrap;padding:14px 18px;margin-bottom:16px}.fl input,.fl select{width:auto;min-width:170px;border-radius:10px;padding:9px 12px}.fl .fi{flex:1;min-width:220px}
+.tw{overflow-x:auto;padding:4px 10px}table{width:100%;border-collapse:collapse}th,td{padding:12px 10px;text-align:left;border-bottom:1px solid var(--line);white-space:nowrap;vertical-align:middle}th{color:var(--mute);font-weight:600;font-size:11.5px;text-transform:uppercase;letter-spacing:.04em}tbody tr:hover{background:var(--bg)}
+button,input,select{font:inherit}button{background:var(--acc);color:var(--on);border:0;border-radius:10px;padding:9px 16px;cursor:pointer;font-weight:500}
+button.g,button.o{background:var(--card);color:var(--ink);border:1px solid var(--line)}button.s{padding:3px 10px;font-size:12.5px}button.lk{background:none;border:0;color:var(--mute);margin-left:auto}
+.ic{background:none;color:var(--mute);padding:4px 7px;font-size:15px}.ic:hover{color:var(--acc)}
+:focus-visible{outline:2px solid var(--acc);outline-offset:1px}
+input,select{background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:7px 10px;width:100%}input[type=checkbox]{width:auto;padding:0}
+.tag,.pill{display:inline-flex;align-items:center;gap:6px;padding:2px 11px;border-radius:99px;font-size:12.5px;background:var(--acc2);color:var(--ok);font-weight:500}.tag::before{content:'';width:6px;height:6px;border-radius:50%;background:currentColor}
+.tag.bad{color:var(--bad);background:var(--bb)}.tag.wn{color:var(--wn);background:var(--wb)}
+.pid{font:12px ui-monospace,Consolas,monospace;background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:2px 8px}
+.cat{background:var(--acc2);color:var(--acc);border-radius:8px;padding:2px 10px;font-size:12.5px}
+.nm{font-weight:700}.nm small{display:block;font-weight:400;color:var(--mute);font-size:12.5px}
+.pb{height:5px;background:var(--line);border-radius:99px;width:90px;margin-top:4px}.pb i{display:block;height:100%;background:var(--ok);border-radius:99px}
+.chart{display:flex;gap:10px;align-items:flex-end;height:140px}.chart div{flex:1;height:100%;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;font-size:11px;color:var(--mute)}
+.chart i{display:block;width:100%;background:var(--acc);border-radius:5px 5px 0 0;min-height:2px}
+.row{display:flex;justify-content:space-between;gap:10px;padding:3px 0}
+.hero{background:linear-gradient(120deg,#ffd6e3,#ffb3cc);border-radius:14px;padding:22px 26px;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:14px;color:#6b1236}.hero h2{margin:0 0 2px;font-size:24px}.hero button{background:#e0245e;color:#fff;border-radius:99px;padding:10px 22px}
+.sc{display:grid;grid-template-columns:repeat(auto-fit,minmax(104px,1fr));gap:8px;margin-bottom:14px}.sc button{background:none;color:var(--ink);display:flex;flex-direction:column;align-items:center;gap:6px;padding:8px 4px}.sc i{font-style:normal;width:56px;height:56px;border-radius:50%;display:grid;place-items:center;font-size:26px}
+dialog{border:1px solid var(--line);border-radius:14px;background:var(--card);color:var(--ink);padding:20px;width:min(520px,94vw);max-height:92vh}dialog::backdrop{background:rgba(8,24,16,.5)}
+.f{display:grid;gap:10px}.f label{display:grid;gap:3px;font-size:12.5px;color:var(--mute)}.act{display:flex;justify-content:flex-end;gap:8px;margin-top:14px}
+.ln{display:grid;grid-template-columns:1fr 80px;gap:8px}.tot{font-weight:700;text-align:right;margin:0}
+#toast{position:fixed;bottom:calc(20px + env(safe-area-inset-bottom,0px));left:50%;transform:translateX(-50%);background:#08452c;color:#fff;padding:9px 16px;border-radius:8px;display:none;z-index:99}
+@media(max-width:900px){#hd{flex-wrap:wrap;padding:12px 16px}.chip,.user{display:none}.srch{order:3;max-width:none;flex-basis:100%}#gn,#sn{padding-left:12px;padding-right:12px}.g2{grid-template-columns:1fr}main{padding:16px}.ph h2{font-size:22px}}
+</style>
+</head>
+<body>
+<header id="hd"></header><nav id="gn"></nav><div id="sn"></div><main id="main"></main><dialog id="dlg"></dialog><div id="toast"></div>
+<script>
+/* ===== 1. LƯỢC ĐỒ — mô phỏng đúng 16 bảng trong file SQL Server (tên bảng, tên cột, khóa, ràng buộc CHECK/UNIQUE/FK) =====
+ c: [tên cột, nhãn (* = NOT NULL), kiểu, mặc định]. Kiểu: t=chuỗi, n0/n1/n+=số nguyên (>=0 / >=1 / >0), n15=1..5, m+/m0=tiền (>0 / >=0),
+ d=date, i=datetime, b=bit, f:Bảng=khóa ngoại, e:A,B=CHECK IN(...). pk=khóa tự tăng, key=khóa chính kép, uq=UNIQUE, chk=CHECK nhiều cột */
+const T={
+ThuongHieu:{n:'Thương hiệu',pk:'MaThuongHieu',uq:['TenThuongHieu'],c:[['TenThuongHieu','Tên thương hiệu*','t'],['XuatXu','Xuất xứ','t'],['MoTa','Mô tả','t']]},
+DanhMuc:{n:'Danh mục',pk:'MaDanhMuc',uq:['TenDanhMuc'],c:[['TenDanhMuc','Tên danh mục*','t']]},
+ChiNhanh:{n:'Chi nhánh',pk:'MaChiNhanh',c:[['TenChiNhanh','Tên chi nhánh*','t'],['DiaChi','Địa chỉ*','t'],['LoaiChiNhanh','Loại chi nhánh*','e:CuaHang,Kho']]},
+DonViVanChuyen:{n:'Đơn vị vận chuyển',pk:'MaDVVC',uq:['TenDVVC'],c:[['TenDVVC','Tên ĐVVC*','t'],['SoDienThoai','Số điện thoại','t']]},
+SanPham:{n:'Sản phẩm',pk:'MaSanPham',chk:r=>r.GiaKhuyenMai!=null&&r.GiaKhuyenMai>r.GiaBan&&'Giá khuyến mãi phải ≤ giá bán',c:[['TenSanPham','Tên sản phẩm*','t'],['MaThuongHieu','Thương hiệu*','f:ThuongHieu'],['MaDanhMuc','Danh mục*','f:DanhMuc'],['GiaBan','Giá bán*','m+'],['GiaKhuyenMai','Giá khuyến mãi','m+'],['DungTich','Dung tích','t'],['LoaiDaPhuHop','Loại da phù hợp','t'],['HSD','Hạn sử dụng','d'],['TrangThai','Trạng thái*','e:DangBan,An,NgungKinhDoanh']]},
+KhachHang:{n:'Khách hàng',pk:'MaKhachHang',uq:['Email','SoDienThoai'],c:[['HoTen','Họ tên*','t'],['Email','Email','t'],['SoDienThoai','Số điện thoại*','t'],['DiaChi','Địa chỉ','t'],['DiemTichLuy','Điểm tích lũy*','n0',0]]},
+NhanVien:{n:'Nhân viên',pk:'MaNhanVien',uq:['SoDienThoai'],c:[['HoTen','Họ tên*','t'],['ChucVu','Chức vụ','t'],['SoDienThoai','Số điện thoại','t'],['MaChiNhanh','Chi nhánh*','f:ChiNhanh']]},
+TonKhoChiNhanh:{n:'Tồn kho chi nhánh',key:['MaChiNhanh','MaSanPham'],chk:r=>r.SoLuongGiuCho>r.SoLuong&&'Số lượng giữ chỗ phải ≤ số lượng tồn',c:[['MaChiNhanh','Chi nhánh*','f:ChiNhanh'],['MaSanPham','Sản phẩm*','f:SanPham'],['SoLuong','Số lượng tồn*','n0',0],['SoLuongGiuCho','Số lượng giữ chỗ*','n0',0]]},
+MaGiamGia:{n:'Mã giảm giá',pk:'MaGiamGia',uq:['Code'],chk:r=>(r.LoaiGiam=='PhanTram'&&r.GiaTriGiam>100&&'Giảm theo % không được quá 100')||(r.NgayKetThuc<=r.NgayBatDau&&'Ngày kết thúc phải sau ngày bắt đầu'),c:[['Code','Mã code*','t'],['LoaiGiam','Loại giảm*','e:PhanTram,SoTien'],['GiaTriGiam','Giá trị giảm*','n+'],['GiaTriDonToiThieu','Đơn tối thiểu*','m0',0],['GioiHanSuDung','Giới hạn sử dụng*','n1',100],['NgayBatDau','Ngày bắt đầu*','i','now'],['NgayKetThuc','Ngày kết thúc*','i']]},
+DonHang:{n:'Đơn hàng (bản ghi)',pk:'MaDonHang',l:r=>'#'+r.MaDonHang+' – '+L('KhachHang',r.MaKhachHang),c:[['MaKhachHang','Khách hàng*','f:KhachHang'],['MaNhanVien','Nhân viên','f:NhanVien'],['MaChiNhanh','Chi nhánh*','f:ChiNhanh'],['MaGiamGia','Mã giảm giá','f:MaGiamGia'],['NgayDat','Ngày đặt*','i','now'],['DiaChiGiao','Địa chỉ giao*','t'],['TrangThai','Trạng thái*','e:ChoXacNhan,DaXacNhan,DangGiao,DaGiao,DaHuy,DoiTra']]},
+ChiTietDonHang:{n:'Chi tiết đơn hàng',key:['MaDonHang','MaSanPham'],c:[['MaDonHang','Đơn hàng*','f:DonHang'],['MaSanPham','Sản phẩm*','f:SanPham'],['SoLuong','Số lượng*','n1',1],['DonGia','Đơn giá*','m+']]},
+ThanhToan:{n:'Thanh toán',pk:'MaThanhToan',c:[['MaDonHang','Đơn hàng*','f:DonHang'],['PhuongThuc','Phương thức*','e:COD,The,ViDienTu,ChuyenKhoan'],['SoTien','Số tiền*','m+'],['TrangThai','Trạng thái*','e:ChoThanhToan,DaThanhToan,ThatBai,DaHoanTien'],['NgayThanhToan','Ngày thanh toán','i']]},
+VanDon:{n:'Vận đơn',pk:'MaVanDon',uq:['MaVanDonNgoai'],chk:r=>(r.NgayGiaoThucTe&&r.NgayGiaoThucTe<r.NgayGui&&'Ngày giao thực tế phải ≥ ngày gửi')||(r.NgayHenGiao&&r.NgayHenGiao<r.NgayGui&&'Ngày hẹn giao phải ≥ ngày gửi'),c:[['MaDonHang','Đơn hàng*','f:DonHang'],['MaDVVC','Đơn vị vận chuyển*','f:DonViVanChuyen'],['MaVanDonNgoai','Mã vận đơn ngoài*','t'],['LoaiGiao','Loại giao*','e:Thuong,Nhanh2H'],['NgayGui','Ngày gửi*','i','now'],['NgayHenGiao','Ngày hẹn giao','i'],['NgayGiaoThucTe','Ngày giao thực tế','i']]},
+YeuCauDoiTra:{n:'Yêu cầu đổi trả',pk:'MaYeuCau',l:r=>'#'+r.MaYeuCau+' (đơn #'+r.MaDonHang+')',c:[['MaDonHang','Đơn hàng*','f:DonHang'],['NgayYeuCau','Ngày yêu cầu*','i','now'],['LyDo','Lý do*','t'],['TrangThai','Trạng thái*','e:ChoDuyet,DaDuyet,TuChoi,DaNhanHang,HoanTat']]},
+ChiTietDoiTra:{n:'Chi tiết đổi trả',key:['MaYeuCau','MaSanPham'],c:[['MaYeuCau','Yêu cầu đổi trả*','f:YeuCauDoiTra'],['MaSanPham','Sản phẩm*','f:SanPham'],['SoLuong','Số lượng*','n1',1]]},
+DanhGia:{n:'Đánh giá',pk:'MaDanhGia',key:['MaKhachHang','MaSanPham','MaDonHang'],c:[['MaKhachHang','Khách hàng*','f:KhachHang'],['MaSanPham','Sản phẩm*','f:SanPham'],['MaDonHang','Đơn hàng*','f:DonHang'],['SoSao','Số sao (1-5)*','n15',5],['NoiDung','Nội dung','t'],['NgayDanhGia','Ngày đánh giá*','i','now'],['DaDuyet','Đã duyệt','b',0]]}
+};
+const LB={DangBan:'Đang bán',An:'Ẩn',NgungKinhDoanh:'Ngừng kinh doanh',CuaHang:'Cửa hàng',Kho:'Kho',PhanTram:'Phần trăm',SoTien:'Số tiền',ChoXacNhan:'Chờ xác nhận',DaXacNhan:'Đã xác nhận',DangGiao:'Đang giao',DaGiao:'Đã giao',DaHuy:'Đã hủy',DoiTra:'Đổi trả',COD:'COD',The:'Thẻ',ViDienTu:'Ví điện tử',ChuyenKhoan:'Chuyển khoản',ChoThanhToan:'Chờ thanh toán',DaThanhToan:'Đã thanh toán',ThatBai:'Thất bại',DaHoanTien:'Đã hoàn tiền',Thuong:'Thường',Nhanh2H:'Nhanh 2H',ChoDuyet:'Chờ duyệt',DaDuyet:'Đã duyệt',TuChoi:'Từ chối',DaNhanHang:'Đã nhận hàng',HoanTat:'Hoàn tất'};
+/* ===== 2. TIỆN ÍCH & LỚP DỮ LIỆU — khi gắn SQL: thay DB/add/tk bằng lệnh gọi API backend, các hàm giao diện giữ nguyên ===== */
+const $=s=>document.querySelector(s),DB={};for(const k in T)DB[k]=[];
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const vnd=n=>new Intl.NumberFormat('vi-VN').format(Math.round(n))+' ₫';
+const now=()=>new Date(Date.now()-new Date().getTimezoneOffset()*6e4).toISOString().slice(0,16);
+const addD=(s,d)=>new Date(new Date(s+'Z').getTime()+d*864e5).toISOString().slice(0,16);
+const tag=s=>`<span class="tag ${/^(DaGiao|DaThanhToan|HoanTat|DaDuyet|DangBan|CuaHang)$/.test(s)?'ok':/^(DaHuy|ThatBai|TuChoi|NgungKinhDoanh)$/.test(s)?'bad':'wn'}">${LB[s]||esc(s)}</span>`;
+const L=(t,id)=>{const m=T[t],r=DB[t].find(x=>x[m.pk]==id);return r?(m.l?m.l(r):r[m.c[0][0]]):''};
+const add=(t,o)=>{const m=T[t];if(m.pk)o[m.pk]=DB[t].reduce((a,r)=>Math.max(a,r[m.pk]),0)+1;DB[t].push(o);return o};
+const tk=(c,p)=>DB.TonKhoChiNhanh.find(x=>x.MaChiNhanh==c&&x.MaSanPham==p);
+const sub=id=>DB.ChiTietDonHang.filter(l=>l.MaDonHang==id).reduce((a,l)=>a+l.SoLuong*l.DonGia,0);
+const disc=o=>{const g=DB.MaGiamGia.find(x=>x.MaGiamGia==o.MaGiamGia),s=sub(o.MaDonHang);return !g?0:g.LoaiGiam=='PhanTram'?s*g.GiaTriGiam/100:Math.min(g.GiaTriGiam,s)};
+const tot=o=>sub(o.MaDonHang)-disc(o);
+const tbl=(h,r)=>`<div class="card tw"><table><thead><tr>${h.map(x=>`<th>${x}</th>`).join('')}</tr></thead><tbody>${r.map(x=>`<tr>${x.map(c=>`<td>${c}</td>`).join('')}</tr>`).join('')||'<tr><td class="mute">Không có dữ liệu.</td></tr>'}</tbody></table></div>`;
+const rows=s=>s.trim().split('\n').map(l=>l.split('|'));
+
+/* ===== 3. DỮ LIỆU MẪU — lấy từ file SQL (bảng nhỏ chép nguyên, đơn hàng/chi tiết/thanh toán/vận đơn/đổi trả/đánh giá sinh theo đúng công thức INSERT) ===== */
+rows(`Innisfree|Hàn Quốc|Mỹ phẩm thiên nhiên từ đảo Jeju
+La Roche-Posay|Pháp|Dược mỹ phẩm cho da nhạy cảm
+Cocoon|Việt Nam|Mỹ phẩm thuần chay từ nguyên liệu Việt
+The Ordinary|Canada|Hoạt chất nồng độ cao, giá hợp lý
+Cerave|Mỹ|Phục hồi hàng rào bảo vệ da với ceramide
+Laneige|Hàn Quốc|Chuyên cấp ẩm cho da
+Some By Mi|Hàn Quốc|Chuyên trị da mụn
+Maybelline|Mỹ|Trang điểm đại chúng`).forEach(([a,b,c])=>add('ThuongHieu',{TenThuongHieu:a,XuatXu:b,MoTa:c}));
+'Sữa rửa mặt,Kem chống nắng,Serum,Kem dưỡng,Son môi,Toner'.split(',').forEach(a=>add('DanhMuc',{TenDanhMuc:a}));
+rows(`Cửa hàng Cầu Giấy|123 Xuân Thủy, Cầu Giấy, Hà Nội|CuaHang
+Cửa hàng Quận 1|45 Nguyễn Huệ, Quận 1, TP.HCM|CuaHang
+Kho Hà Nội|Khu công nghiệp Quang Minh, Mê Linh, Hà Nội|Kho
+Kho TP.HCM|Khu chế xuất Tân Thuận, Quận 7, TP.HCM|Kho`).forEach(([a,b,c])=>add('ChiNhanh',{TenChiNhanh:a,DiaChi:b,LoaiChiNhanh:c}));
+rows(`Giao Hàng Nhanh|1900636677
+Giao Hàng Tiết Kiệm|1900636677
+Viettel Post|19008095
+J&T Express|19001088`).forEach(([a,b])=>add('DonViVanChuyen',{TenDVVC:a,SoDienThoai:b}));
+rows(`Sữa rửa mặt Innisfree Green Tea|1|1|180000||150ml|Mọi loại da|28-03-01
+Sữa rửa mặt La Roche-Posay Effaclar|2|1|395000|350000|200ml|Da dầu|28-01-15
+Sữa rửa mặt Cerave Foaming|5|1|320000||236ml|Da dầu|28-05-20
+Sữa rửa mặt Cocoon Bí Đao|3|1|165000|149000|310ml|Da dầu|27-12-10
+Sữa rửa mặt Some By Mi AHA BHA PHA|7|1|210000||100ml|Da mụn|27-11-30
+Sữa rửa mặt Laneige Cream Cleanser|6|1|350000||150ml|Da khô|28-02-28
+Sữa rửa mặt The Ordinary Squalane Cleanser|4|1|290000||50ml|Da nhạy cảm|27-10-25
+Kem chống nắng La Roche-Posay Anthelios SPF50|2|2|495000|450000|50ml|Mọi loại da|28-04-01
+Kem chống nắng Innisfree Daily UV SPF50|1|2|260000||50ml|Da hỗn hợp|28-06-30
+Kem chống nắng Cerave Hydrating SPF30|5|2|420000||52ml|Da khô|28-03-15
+Kem chống nắng Laneige Essential SPF50|6|2|450000|399000|50ml|Da thường|28-01-20
+Kem chống nắng Some By Mi Truecica SPF50|7|2|310000||50ml|Da mụn|27-12-31
+Kem chống nắng Cocoon Sunscreen SPF50|3|2|185000||50ml|Mọi loại da|28-02-14
+Serum The Ordinary Niacinamide 10%|4|3|250000||30ml|Da dầu|28-05-01
+Serum The Ordinary Hyaluronic Acid|4|3|270000|229000|30ml|Da khô|28-05-01
+Serum La Roche-Posay Hyalu B5|2|3|990000||30ml|Mọi loại da|28-07-10
+Serum Innisfree Green Tea Seed|1|3|520000||80ml|Da hỗn hợp|28-03-22
+Serum Some By Mi Galactomyces|7|3|380000|320000|30ml|Da xỉn màu|27-12-05
+Serum Cocoon Vitamin C|3|3|235000||30ml|Da xỉn màu|27-11-11
+Serum Laneige Perfect Renew|6|3|890000||40ml|Da lão hóa|28-08-01
+Kem dưỡng Cerave Moisturising Cream|5|4|380000||177ml|Da khô|28-04-18
+Kem dưỡng Laneige Water Bank Gel|6|4|680000|610000|50ml|Da dầu|28-02-10
+Kem dưỡng La Roche-Posay Cicaplast Baume B5|2|4|350000||40ml|Da nhạy cảm|28-06-06
+Kem dưỡng Innisfree Orchid Cream|1|4|640000||50ml|Da lão hóa|28-01-25
+Kem dưỡng Cocoon Hũ Nghệ|3|4|245000||30ml|Da mụn|27-12-20
+Kem dưỡng Some By Mi Miracle Cream|7|4|330000|299000|50ml|Da mụn|28-03-03
+Son kem Maybelline Superstay Vinyl Ink|8|5|215000||4.2ml||28-09-09
+Son lì Maybelline Color Sensational|8|5|189000|159000|3.9g||28-10-10
+Son dưỡng Laneige Lip Sleeping Mask|6|5|360000||20g||28-04-04
+Son tint Innisfree Vivid Cotton Ink|1|5|175000||4g||28-05-05
+Son bóng Maybelline Lifter Gloss|8|5|230000||5.4ml||28-06-06
+Son dưỡng Cocoon Cà Phê Đắk Lắk|3|5|95000|79000|5g||27-10-30
+Toner Innisfree Green Tea Balancing|1|6|285000||200ml|Da hỗn hợp|28-02-02
+Toner Some By Mi AHA BHA PHA 30 Days|7|6|299000||150ml|Da mụn|27-12-15
+Toner Cocoon Sen Hậu Giang|3|6|200000|179000|140ml|Mọi loại da|27-11-25
+Toner Laneige Cream Skin|6|6|540000||170ml|Da khô|28-07-07
+Toner The Ordinary Glycolic Acid 7%|4|6|330000||240ml|Da dầu|28-03-30
+Toner La Roche-Posay Serozinc|2|6|320000||150ml|Da dầu|28-04-04
+Serum Cerave Resurfacing Retinol|5|3|450000||30ml|Da mụn|27-09-30|An
+Sữa rửa mặt Innisfree Jeju Volcanic|1|1|170000||150ml|Da dầu|26-09-01|NgungKinhDoanh`).forEach(a=>add('SanPham',{TenSanPham:a[0],MaThuongHieu:+a[1],MaDanhMuc:+a[2],GiaBan:+a[3],GiaKhuyenMai:a[4]?+a[4]:null,DungTich:a[5],LoaiDaPhuHop:a[6]||null,HSD:'20'+a[7],TrangThai:a[8]||'DangBan'}));
+rows(`Nguyễn Văn An|an.nguyen|12 Trần Duy Hưng, Cầu Giấy, Hà Nội|120
+Trần Thị Bình|binh.tran|45 Nguyễn Trãi, Thanh Xuân, Hà Nội|80
+Lê Hoàng Cường|cuong.le|78 Lê Lợi, Quận 1, TP.HCM|0
+Phạm Thu Dung|dung.pham|23 Hai Bà Trưng, Quận 3, TP.HCM|250
+Hoàng Minh Đức|duc.hoang|9 Kim Mã, Ba Đình, Hà Nội|40
+Vũ Thị Hà|ha.vu|56 Phạm Văn Đồng, Bắc Từ Liêm, Hà Nội|310
+Đặng Quốc Huy|huy.dang|101 Võ Văn Tần, Quận 3, TP.HCM|15
+Bùi Thanh Hương|huong.bui|34 Láng Hạ, Đống Đa, Hà Nội|190
+Đỗ Văn Khánh|khanh.do|67 Cách Mạng Tháng 8, Quận 10, TP.HCM|60
+Ngô Thị Lan|lan.ngo|88 Giải Phóng, Hai Bà Trưng, Hà Nội|420
+Dương Minh Long|long.duong|15 Nguyễn Đình Chiểu, Quận 1, TP.HCM|0
+Lý Thị Mai|mai.ly|29 Tây Sơn, Đống Đa, Hà Nội|150
+Phan Văn Nam|nam.phan|72 Điện Biên Phủ, Bình Thạnh, TP.HCM|90
+Trịnh Thu Oanh|oanh.trinh|5 Hoàng Quốc Việt, Cầu Giấy, Hà Nội|275
+Võ Hoàng Phúc|phuc.vo|60 Lý Thường Kiệt, Quận 10, TP.HCM|30
+Đinh Thị Quỳnh|quynh.dinh|41 Nguyễn Chí Thanh, Đống Đa, Hà Nội|510
+Mai Văn Sơn|son.mai|19 Trường Chinh, Tân Bình, TP.HCM|70
+Tạ Thị Thảo|thao.ta|83 Xã Đàn, Đống Đa, Hà Nội|25
+Lâm Quang Tuấn|tuan.lam|27 Phan Xích Long, Phú Nhuận, TP.HCM|200
+Châu Thị Uyên|uyen.chau|92 Nguyễn Văn Cừ, Long Biên, Hà Nội|10
+Hồ Văn Việt|viet.ho|38 Lê Văn Sỹ, Quận 3, TP.HCM|360
+Cao Thị Xuân|xuan.cao|14 Nguyễn Khang, Cầu Giấy, Hà Nội|130
+Nguyễn Thị Yến|yen.nguyen|50 Cộng Hòa, Tân Bình, TP.HCM|85
+Trần Đức Anh|anh.tran|76 Nguyễn Lương Bằng, Đống Đa, Hà Nội|0
+Lê Thị Bảo|bao.le|33 Pasteur, Quận 1, TP.HCM|220
+Phạm Văn Chiến|chien.pham|8 Hồ Tùng Mậu, Cầu Giấy, Hà Nội|105
+Hoàng Thị Diệp|diep.hoang|64 Âu Cơ, Tân Phú, TP.HCM|55
+Vũ Minh Giang|giang.vu|21 Tôn Đức Thắng, Đống Đa, Hà Nội|170
+Đặng Thị Hạnh|hanh.dang|47 Lý Tự Trọng, Quận 1, TP.HCM|295
+Bùi Văn Kiên|kien.bui|11 Tố Hữu, Nam Từ Liêm, Hà Nội|45`).forEach(([a,e,d,p],i)=>add('KhachHang',{HoTen:a,Email:e+'@gmail.com',SoDienThoai:'0912'+String(i+1).padStart(6,'0'),DiaChi:d,DiemTichLuy:+p}));
+rows(`Nguyễn Thị Lan Anh|Quản lý|1
+Trần Văn Bách|Nhân viên bán hàng|1
+Lê Thị Cẩm|Quản lý|2
+Phạm Văn Dũng|Nhân viên bán hàng|2
+Hoàng Thị Em|Thủ kho|3
+Vũ Văn Phong|Nhân viên đóng gói|3
+Đỗ Thị Giang|Thủ kho|4
+Bùi Văn Hải|Nhân viên đóng gói|4`).forEach(([a,b,c],i)=>add('NhanVien',{HoTen:a,ChucVu:b,SoDienThoai:'098800000'+(i+1),MaChiNhanh:+c}));
+DB.ChiNhanh.forEach(c=>DB.SanPham.forEach(s=>DB.TonKhoChiNhanh.push({MaChiNhanh:c.MaChiNhanh,MaSanPham:s.MaSanPham,SoLuong:20+((s.MaSanPham*7+c.MaChiNhanh*13)%80),SoLuongGiuCho:s.MaSanPham%5})));
+rows(`WELCOME10|PhanTram|10|200000|100|2026-01-01|2026-12-31
+FREESHIP30|SoTien|30000|300000|200|2026-01-01|2026-12-31
+SALE20|PhanTram|20|500000|50|2026-01-01|2026-12-31
+VIP50K|SoTien|50000|600000|30|2026-01-01|2026-12-31
+XMAS15|PhanTram|15|300000|100|2026-12-01|2026-12-31
+HETHAN5|PhanTram|5|0|100|2025-01-01|2025-06-30`).forEach(a=>add('MaGiamGia',{Code:a[0],LoaiGiam:a[1],GiaTriGiam:+a[2],GiaTriDonToiThieu:+a[3],GioiHanSuDung:+a[4],NgayBatDau:a[5]+'T00:00',NgayKetThuc:a[6]+'T00:00'}));
+for(let n=1;n<=40;n++){
+  const k=DB.KhachHang[(n*7)%30];
+  add('DonHang',{MaKhachHang:k.MaKhachHang,MaNhanVien:n%5==0?null:2*((n-1)%4+1)-1+n%2,MaChiNhanh:(n-1)%4+1,MaGiamGia:n%4==0?((n/4|0)%4)+1:null,
+    NgayDat:new Date(Date.UTC(2026,2,1+n*5,8+n%12)).toISOString().slice(0,16),DiaChiGiao:k.DiaChi,
+    TrangThai:n%10==0?'DaHuy':n%13==0?'DoiTra':n==35?'ChoXacNhan':n==36||n==38?'DaXacNhan':n==37?'DangGiao':'DaGiao'});
+  const Ls=[[(n*3)%40+1,n%3+1],[(n*3+7)%40+1,(n+1)%3+1]];if(n%3==0)Ls.push([(n*3+19)%40+1,1]);
+  Ls.forEach(([p,q])=>{const s=DB.SanPham[p-1];if(s.TrangThai=='DangBan'&&!DB.ChiTietDonHang.some(x=>x.MaDonHang==n&&x.MaSanPham==p))DB.ChiTietDonHang.push({MaDonHang:n,MaSanPham:p,SoLuong:q,DonGia:s.GiaKhuyenMai||s.GiaBan})});
+}
+DB.DonHang.forEach(o=>{const id=o.MaDonHang,t=o.TrangThai;
+  if(sub(id))add('ThanhToan',{MaDonHang:id,PhuongThuc:['COD','The','ViDienTu','ChuyenKhoan'][id%4],SoTien:tot(o),TrangThai:t=='DaHuy'?'ThatBai':['ChoXacNhan','DaXacNhan','DangGiao'].includes(t)?'ChoThanhToan':'DaThanhToan',NgayThanhToan:t=='DaGiao'||t=='DoiTra'?addD(o.NgayDat,1/24):null});
+  if(['DaGiao','DangGiao','DoiTra'].includes(t))add('VanDon',{MaDonHang:id,MaDVVC:id%4+1,MaVanDonNgoai:'VD2026'+String(id).padStart(3,'0'),LoaiGiao:id%5==0?'Nhanh2H':'Thuong',NgayGui:addD(o.NgayDat,1),NgayHenGiao:addD(o.NgayDat,4),NgayGiaoThucTe:t=='DangGiao'?null:addD(o.NgayDat,2+id%4)});
+});
+[[13,'Sản phẩm bị rò rỉ khi vận chuyển','ChoDuyet'],[26,'Giao sai sản phẩm so với đơn đặt','DaDuyet'],[39,'Sản phẩm gây kích ứng da','DaNhanHang'],[7,'Đổi ý, không muốn sử dụng nữa','TuChoi'],[14,'Hộp sản phẩm bị móp méo khi nhận','HoanTat']].forEach(([id,ly,st])=>{
+  const y=add('YeuCauDoiTra',{MaDonHang:id,NgayYeuCau:addD(DB.DonHang[id-1].NgayDat,5),LyDo:ly,TrangThai:st}),ls=DB.ChiTietDonHang.filter(l=>l.MaDonHang==id).map(l=>l.MaSanPham);
+  if(ls.length)DB.ChiTietDoiTra.push({MaYeuCau:y.MaYeuCau,MaSanPham:Math.min(...ls),SoLuong:1});
+});
+DB.DonHang.filter(o=>o.TrangThai=='DaGiao').forEach(o=>{const id=o.MaDonHang,ls=DB.ChiTietDonHang.filter(l=>l.MaDonHang==id).map(l=>l.MaSanPham),s=id%5+1;
+  if(ls.length)add('DanhGia',{MaKhachHang:o.MaKhachHang,MaSanPham:Math.max(...ls),MaDonHang:id,SoSao:s,NoiDung:['Không như mong đợi','Chưa hợp với da mình','Bình thường, giao hơi chậm','Dùng ổn, đóng gói cẩn thận','Rất tốt, sẽ mua lại'][s-1],NgayDanhGia:addD(o.NgayDat,7),DaDuyet:id%3==0?0:1})});
+  /* ===== 4. GIAO DIỆN CHUNG ===== */
+const S={q:'',pg:0,qi:0,f:{},sel:new Set(),pi:[],t:''};let view='dash';
+function toast(m){const t=$('#toast');t.textContent=m;t.style.display='block';clearTimeout(t.h);t.h=setTimeout(()=>t.style.display='none',2600)}
+function modal(title,body,save,label='Lưu'){
+  const d=$('#dlg');d.innerHTML=`<h3>${title}</h3><div class="f">${body}</div><div class="act"><button class="g" id="x">${save?'Hủy':'Đóng'}</button>${save?`<button id="ok">${label}</button>`:''}</div>`;
+  d.showModal();$('#x').onclick=()=>d.close();
+  if(save)$('#ok').onclick=()=>{try{if(save()!==false){d.close();render()}}catch(e){toast(e.message)}};
+}
+function show(c,v){if(v==null||v==='')return '—';const k=c[2][0];return k=='m'?`<b>${vnd(v)}</b>`:k=='b'?(v?'Có':'Không'):k=='f'?(c[2]=='f:DanhMuc'?`<span class="cat">${esc(L('DanhMuc',v))}</span>`:(c[2]=='f:ChiNhanh'?'📍 ':'')+esc(L(c[2].slice(2),v))):k=='e'?tag(v):k=='i'?v.replace('T',' '):esc(v)}
+const lab=c=>c[1].replace('*','');
+
+/* ===== 5. CRUD TỰ ĐỘNG CHO CẢ 16 BẢNG (kiểm tra NOT NULL, CHECK, UNIQUE, khóa chính kép, khóa ngoại) ===== */
+const SP=id=>DB.SanPham.find(x=>x.MaSanPham==id);
+const kst=r=>{const a=r.SoLuong-r.SoLuongGiuCho;return a<=0?'het':a<=25?'sap':'con'};
+const PX={ThuongHieu:'TH',DanhMuc:'DM',ChiNhanh:'CN',DonViVanChuyen:'VC',SanPham:'SP',KhachHang:'KH',NhanVien:'NV',MaGiamGia:'MG',DonHang:'DH',ThanhToan:'TT',VanDon:'VD',YeuCauDoiTra:'YC',DanhGia:'DG'};
+const pid=(t,r)=>`<span class="pid">${PX[t]||'#'}${String(r[T[t].pk]).padStart(3,'0')}</span>`;
+const ph=(t,sub,ac,badge='')=>`<div class="ph"><div><h2>${t}${badge}</h2><p>${sub}</p></div><div class="ac">${ac}</div></div>`;
+const stc=(l,v,u,n,col,ic,bg)=>`<div class="card ci"><div><span>${l}</span><b>${v} <small>${u}</small></b><em style="color:${col}">${n}</em></div><div class="ib" style="background:${bg}">${ic}</div></div>`;
+const nf=n=>new Intl.NumberFormat('vi-VN').format(n);
+const STATS={
+TonKhoChiNhanh:()=>{const a=DB.TonKhoChiNhanh;return [stc('Tổng dòng tồn kho',a.length,'dòng',DB.SanPham.length+' sản phẩm × '+DB.ChiNhanh.length+' chi nhánh','var(--ok)','🧴','#e6f6ee'),stc('Tồn kho khả dụng',nf(a.reduce((x,r)=>x+r.SoLuong-r.SoLuongGiuCho,0)),'món','Tại '+DB.ChiNhanh.length+' chi nhánh','var(--mute)','📦','#e8f0fe'),stc('Đang giữ chỗ (đơn chờ)',a.reduce((x,r)=>x+r.SoLuongGiuCho,0),'món','Dành cho các đơn chưa giao','var(--wn)','⏳','#fdf1d8'),stc('Cảnh báo sắp hết hàng',a.filter(r=>kst(r)!='con').length,'dòng','Tồn khả dụng ≤ 25 món','var(--bad)','⚠️','#fde8ec')]},
+SanPham:()=>{const a=DB.SanPham;return [stc('Tổng sản phẩm',a.length,'sản phẩm',DB.ThuongHieu.length+' thương hiệu','var(--ok)','🧴','#e6f6ee'),stc('Đang bán',a.filter(s=>s.TrangThai=='DangBan').length,'sản phẩm','Hiển thị trên cửa hàng','var(--mute)','✅','#e8f0fe'),stc('Đang khuyến mãi',a.filter(s=>s.GiaKhuyenMai).length,'sản phẩm','Có giá khuyến mãi','var(--wn)','🏷️','#fdf1d8'),stc('Ẩn / ngừng kinh doanh',a.filter(s=>s.TrangThai!='DangBan').length,'sản phẩm','Không hiển thị','var(--bad)','🚫','#fde8ec')]},
+KhachHang:()=>{const a=DB.KhachHang;return [stc('Tổng khách hàng',a.length,'người','Đã đăng ký','var(--ok)','👥','#e6f6ee'),stc('Tổng điểm tích lũy',nf(a.reduce((x,k)=>x+k.DiemTichLuy,0)),'điểm','Toàn hệ thống','var(--mute)','⭐','#e8f0fe'),stc('Khách đã mua hàng',new Set(DB.DonHang.map(o=>o.MaKhachHang)).size,'người','Có ít nhất 1 đơn','var(--wn)','🛍️','#fdf1d8'),stc('Chưa có điểm',a.filter(k=>k.DiemTichLuy==0).length,'người','Điểm tích lũy = 0','var(--bad)','💤','#fde8ec')]}
+};
+const fdefs=t=>{const m=T[t];if(m.vf)return m.vf;return m.c.filter(c=>/^[fe]/.test(c[2])).map(c=>({k:c[0],l:'Tất cả '+lab(c).toLowerCase(),o:()=>c[2][0]=='f'?DB[c[2].slice(2)].map(x=>[x[T[c[2].slice(2)].pk],L(c[2].slice(2),x[T[c[2].slice(2)].pk])]):c[2].slice(2).split(',').map(v=>[v,LB[v]||v]),t:(r,v)=>r[c[0]]==v})).filter(d=>d.o().length<=12).slice(0,3)};
+function listPage(t){
+  const m=T[t];S.t=t;
+  const fs=fdefs(t).map(f=>`<select onchange="S.f['${f.k}']=this.value;S.pg=0;lbody('${t}')"><option value="">${f.l}</option>${f.o().map(([v,x])=>`<option value="${esc(v)}"${S.f[f.k]==v?' selected':''}>${esc(x)}</option>`).join('')}</select>`).join('');
+  $('#main').innerHTML=ph(m.n,m.d||'',`<button class="o" onclick="exportCsv('${t}')">⬇ Xuất Excel</button>`+(t=='TonKhoChiNhanh'?'<button class="o" onclick="importForm()">⬆ Nhập kho</button>':'')+`<button onclick="form('${t}',-1)">＋ Thêm mới</button>`,'<span id="cnt"></span>')
+   +(STATS[t]?`<div class="stats">${STATS[t]().join('')}</div>`:'')
+   +`<div class="card fl"><input class="fi" id="q" placeholder="Lọc theo từ khóa…" value="${esc(S.q)}">${fs}<button class="lk" onclick="S.q='';S.f={};S.pg=0;listPage('${t}')">Đặt lại bộ lọc</button></div><div id="lb"></div>`;
+  $('#q').oninput=e=>{S.q=e.target.value;S.pg=0;lbody(t)};lbody(t);
+}
+function lbody(t){
+  const m=T[t],q=S.q.toLowerCase(),P=15,fd=fdefs(t),
+   cs=m.cells||(r=>[...(m.pk?[pid(t,r)]:[]),...m.c.map((c,i)=>i==0&&m.sub?`<div class="nm">${show(c,r[c[0]])}<small>${esc(m.sub(r))}</small></div>`:show(c,r[c[0]]))]);
+  const all=DB[t].map((r,i)=>({r,i,c:cs(r)})).filter(x=>(!q||x.c.join(' ').replace(/<[^>]+>/g,'').toLowerCase().includes(q))&&fd.every(f=>!S.f[f.k]||f.t(x.r,S.f[f.k]))),pc=Math.max(1,Math.ceil(all.length/P));
+  S.pg=Math.min(S.pg,pc-1);const pg=all.slice(S.pg*P,S.pg*P+P);S.pi=pg.map(x=>x.i);
+  const rs=pg.map(x=>[`<input type="checkbox" ${S.sel.has(x.i)?'checked':''} onchange="tg(${x.i},this.checked)">`,...x.c,`<button class="ic" title="Sửa" onclick="form('${t}',${x.i})">✎</button><button class="ic" title="Xóa" onclick="del('${t}',${x.i})">🗑</button>`]);
+  if($('#cnt'))$('#cnt').textContent=all.length+' bản ghi';
+  $('#lb').innerHTML=(S.sel.size?`<div class="bar"><span class="mute">Đã chọn ${S.sel.size} bản ghi</span><button class="s o" onclick="delSel('${t}')">Xóa đã chọn</button></div>`:'')
+   +tbl([`<input type="checkbox" onchange="selAll(this.checked)">`,...(m.head||[...(m.pk?['Mã']:[]),...m.c.map(lab)]),''],rs)
+   +`<div class="bar" style="margin-top:12px"><span class="mute">Hiển thị ${pg.length} / ${all.length} bản ghi</span><span class="sp"></span><button class="s o" onclick="S.pg=Math.max(0,S.pg-1);lbody('${t}')">Trước</button><span class="mute">Trang ${S.pg+1}/${pc}</span><button class="s o" onclick="S.pg=Math.min(${pc-1},S.pg+1);lbody('${t}')">Sau</button></div>`;
+}
+const tg=(i,on)=>{on?S.sel.add(i):S.sel.delete(i);lbody(S.t)};
+const selAll=on=>{S.pi.forEach(i=>on?S.sel.add(i):S.sel.delete(i));lbody(S.t)};
+function exportCsv(t){
+  const m=T[t],cell=v=>'"'+String(v??'').replace(/"/g,'""')+'"',h=[...(m.pk?[m.pk]:[]),...m.c.map(c=>c[0])],
+   rs=DB[t].map(r=>[...(m.pk?[r[m.pk]]:[]),...m.c.map(c=>c[2][0]=='f'?L(c[2].slice(2),r[c[0]]):r[c[0]])]),a=document.createElement('a');
+  a.href=URL.createObjectURL(new Blob(['\ufeff'+[h,...rs].map(x=>x.map(cell).join(',')).join('\r\n')],{type:'text/csv;charset=utf-8'}));a.download=t+'.csv';a.click();
+}
+function importForm(){
+  modal('Nhập kho',`<label>Chi nhánh<select id="i_c">${DB.ChiNhanh.map(c=>`<option value="${c.MaChiNhanh}">${esc(c.TenChiNhanh)}</option>`).join('')}</select></label><label>Sản phẩm<select id="i_p">${DB.SanPham.map(p=>`<option value="${p.MaSanPham}">${esc(p.TenSanPham)}</option>`).join('')}</select></label><label>Số lượng nhập<input id="i_q" type="number" min="1" value="10"></label>`,()=>{
+    const q=+$('#i_q').value,c=+$('#i_c').value,p=+$('#i_p').value;if(!(q>=1))throw new Error('Số lượng nhập phải ≥ 1');
+    const t=tk(c,p);if(t)t.SoLuong+=q;else DB.TonKhoChiNhanh.push({MaChiNhanh:c,MaSanPham:p,SoLuong:q,SoLuongGiuCho:0});toast('Đã nhập kho +'+q);
+  },'Nhập kho');
+}
+function field(c,r){
+  const [k,l,ty,df]=c,req=l.endsWith('*'),v=k in r?r[k]:(df=='now'?now():df??''),id='f_'+k,o=(val,tx,sel)=>`<option value="${esc(val)}"${sel?' selected':''}>${esc(tx)}</option>`;let h;
+  if(ty[0]=='f'){const t=ty.slice(2);h=`<select id="${id}">${req?'':o('','— Không —')}${DB[t].map(x=>o(x[T[t].pk],L(t,x[T[t].pk]),x[T[t].pk]==v)).join('')}</select>`}
+  else if(ty[0]=='e')h=`<select id="${id}">${ty.slice(2).split(',').map(x=>o(x,LB[x]||x,x==v)).join('')}</select>`;
+  else if(ty=='b')h=`<select id="${id}">${o(1,'Có',v==1)}${o(0,'Không',v==0)}</select>`;
+  else h=`<input id="${id}" type="${ty=='d'?'date':ty=='i'?'datetime-local':/^[nm]/.test(ty)?'number':'text'}" value="${esc(v)}">`;
+  return `<label>${l}${h}</label>`;
+}
+function read(c){
+  const ty=c[2],v0=$('#f_'+c[0]).value.trim();let v=v0;
+  if(v===''){if(c[1].endsWith('*'))throw new Error(lab(c)+' là bắt buộc');return null}
+  if(/^[nm]/.test(ty)){v=Number(v0);const g=ty.slice(1);if(isNaN(v)||(g=='+'&&v<=0)||(g=='0'&&v<0)||(g=='1'&&v<1)||(g=='15'&&(v<1||v>5)))throw new Error(lab(c)+' không hợp lệ (phải '+{'+':'> 0','0':'≥ 0','1':'≥ 1','15':'từ 1 đến 5'}[g]+')')}
+  else if(ty[0]=='f'||ty=='b')v=Number(v0);
+  return v;
+}
+function form(t,i){
+  const m=T[t],r0=i>=0?DB[t][i]:null;
+  modal((r0?'Sửa: ':'Thêm: ')+m.n,m.c.map(c=>field(c,r0||{})).join(''),()=>{
+    const o={};m.c.forEach(c=>o[c[0]]=read(c));
+    for(const u of m.uq||[])if(o[u]!=null&&DB[t].some(x=>x!==r0&&x[u]==o[u]))throw new Error(lab(m.c.find(c=>c[0]==u))+' đã tồn tại');
+    if(m.key&&DB[t].some(x=>x!==r0&&m.key.every(u=>x[u]==o[u])))throw new Error('Bản ghi đã tồn tại (trùng khóa chính/UNIQUE)');
+    const e=m.chk&&m.chk(o);if(e)throw new Error(e);
+    if(r0)Object.assign(r0,o);else add(t,o);toast('Đã lưu');
+  });
+}
+const canDel=(t,r)=>{const m=T[t];if(m.pk)for(const u in T)for(const c of T[u].c)if(c[2]=='f:'+t&&DB[u].some(y=>y[c[0]]==r[m.pk]))return 'Không xóa được: đang được dùng ở bảng "'+T[u].n+'"';return ''};
+function del(t,i){const e=canDel(t,DB[t][i]);if(e)return toast(e);if(confirm('Xóa bản ghi này?')){DB[t].splice(i,1);S.sel.clear();render()}}
+function delSel(t){const ix=[...S.sel].sort((a,b)=>b-a);for(const i of ix){const e=canDel(t,DB[t][i]);if(e)return toast(e)}if(confirm('Xóa '+ix.length+' bản ghi đã chọn?')){ix.forEach(i=>DB[t].splice(i,1));S.sel.clear();render()}}
+/* ===== 6. NGHIỆP VỤ ĐƠN HÀNG: giữ chỗ tồn kho → xác nhận → giao hàng (tạo vận đơn) → đã giao (trừ kho, thu tiền) / hủy / đổi trả ===== */
+const NX={ChoXacNhan:['DaXacNhan','Xác nhận'],DaXacNhan:['DangGiao','Giao hàng'],DangGiao:['DaGiao','Đã giao']};
+function orderForm(){
+  const sel=(id,t,b)=>`<select id="${id}">${b?'<option value="">— Không —</option>':''}${DB[t].filter(r=>t!='SanPham'||r.TrangThai=='DangBan').map(r=>`<option value="${r[T[t].pk]}">${esc(L(t,r[T[t].pk]))}</option>`).join('')}</select>`;
+  const calc=()=>{let s=0;document.querySelectorAll('.ln').forEach(r=>{const p=DB.SanPham.find(x=>x.MaSanPham==r.querySelector('select').value);s+=(p.GiaKhuyenMai||p.GiaBan)*(+r.querySelector('input').value||0)});
+    const g=DB.MaGiamGia.find(x=>x.MaGiamGia==$('#o_g').value),d=!g?0:g.LoaiGiam=='PhanTram'?s*g.GiaTriGiam/100:Math.min(g.GiaTriGiam,s);$('#tot').textContent='Tạm tính '+vnd(s)+(d?' − giảm '+vnd(d):'')+' = '+vnd(s-d)};
+  modal('Tạo đơn hàng',`<label>Khách hàng${sel('o_k','KhachHang')}</label><label>Chi nhánh xuất hàng${sel('o_c','ChiNhanh')}</label><label>Nhân viên phụ trách${sel('o_n','NhanVien',1)}</label><label>Mã giảm giá${sel('o_g','MaGiamGia',1)}</label><label>Địa chỉ giao<input id="o_a"></label><label>Phương thức thanh toán<select id="o_p">${['COD','The','ViDienTu','ChuyenKhoan'].map(x=>`<option value="${x}">${LB[x]}</option>`).join('')}</select></label><div id="lines" class="f"></div><button class="g" id="add">Thêm dòng sản phẩm</button><p id="tot" class="tot"></p>`,()=>{
+    const k=+$('#o_k').value,c=+$('#o_c').value,g=+$('#o_g').value||null,need={};
+    document.querySelectorAll('.ln').forEach(r=>{const p=+r.querySelector('select').value,q=+r.querySelector('input').value;if(q>0)need[p]=(need[p]||0)+q});
+    if(!Object.keys(need).length)throw new Error('Chọn ít nhất 1 sản phẩm');if(!$('#o_a').value.trim())throw new Error('Nhập địa chỉ giao hàng');
+    let s=0;for(const p in need){const t=tk(c,p),sp=DB.SanPham.find(x=>x.MaSanPham==p);if(!t||t.SoLuong-t.SoLuongGiuCho<need[p])throw new Error('Không đủ hàng tại chi nhánh: '+sp.TenSanPham);s+=need[p]*(sp.GiaKhuyenMai||sp.GiaBan)}
+    const v=DB.MaGiamGia.find(x=>x.MaGiamGia==g);
+    if(v){if(now()<v.NgayBatDau||now()>v.NgayKetThuc)throw new Error('Mã giảm giá không còn hiệu lực');if(s<v.GiaTriDonToiThieu)throw new Error('Đơn chưa đạt giá trị tối thiểu '+vnd(v.GiaTriDonToiThieu));if(DB.DonHang.filter(x=>x.MaGiamGia==g&&x.TrangThai!='DaHuy').length>=v.GioiHanSuDung)throw new Error('Mã đã hết lượt sử dụng')}
+    const o=add('DonHang',{MaKhachHang:k,MaNhanVien:+$('#o_n').value||null,MaChiNhanh:c,MaGiamGia:g,NgayDat:now(),DiaChiGiao:$('#o_a').value.trim(),TrangThai:'ChoXacNhan'});
+    for(const p in need){const sp=DB.SanPham.find(x=>x.MaSanPham==p);DB.ChiTietDonHang.push({MaDonHang:o.MaDonHang,MaSanPham:+p,SoLuong:need[p],DonGia:sp.GiaKhuyenMai||sp.GiaBan});tk(c,p).SoLuongGiuCho+=need[p]}
+    add('ThanhToan',{MaDonHang:o.MaDonHang,PhuongThuc:$('#o_p').value,SoTien:tot(o),TrangThai:'ChoThanhToan',NgayThanhToan:null});toast('Đã tạo đơn #'+o.MaDonHang);
+  },'Tạo đơn');
+  const addLine=()=>{const d=document.createElement('div');d.className='ln';d.innerHTML=sel('x','SanPham').replace('id="x"','')+'<input type="number" min="1" value="1">';d.oninput=calc;$('#lines').append(d);calc()};
+  $('#add').onclick=addLine;$('#o_g').onchange=calc;$('#o_k').onchange=()=>$('#o_a').value=DB.KhachHang.find(x=>x.MaKhachHang==$('#o_k').value).DiaChi||'';$('#o_k').onchange();addLine();
+}
+function step(id,to){
+  const o=DB.DonHang.find(x=>x.MaDonHang==id);
+  if(to=='DaHuy'&&!confirm('Hủy đơn #'+id+'? Hàng giữ chỗ sẽ được trả lại kho.'))return;
+  if(to!='DangGiao')return fin(o,to);
+  modal('Giao đơn #'+id,`<label>Đơn vị vận chuyển<select id="v_d">${DB.DonViVanChuyen.map(d=>`<option value="${d.MaDVVC}">${esc(d.TenDVVC)}</option>`).join('')}</select></label><label>Loại giao<select id="v_l"><option value="Thuong">Thường</option><option value="Nhanh2H">Nhanh 2H</option></select></label>`,()=>{
+    let c='VD2026'+String(id).padStart(3,'0');while(DB.VanDon.some(x=>x.MaVanDonNgoai==c))c+='X';
+    add('VanDon',{MaDonHang:id,MaDVVC:+$('#v_d').value,MaVanDonNgoai:c,LoaiGiao:$('#v_l').value,NgayGui:now(),NgayHenGiao:addD(now(),$('#v_l').value=='Nhanh2H'?.1:3),NgayGiaoThucTe:null});fin(o,'DangGiao');
+  },'Tạo vận đơn');
+}
+function fin(o,to){
+  const id=o.MaDonHang,p=DB.ThanhToan.find(x=>x.MaDonHang==id),v=DB.VanDon.find(x=>x.MaDonHang==id);
+  DB.ChiTietDonHang.filter(l=>l.MaDonHang==id).forEach(l=>{const t=tk(o.MaChiNhanh,l.MaSanPham);if(!t)return;
+    if(to=='DaGiao')t.SoLuong=Math.max(0,t.SoLuong-l.SoLuong);
+    if(to=='DaGiao'||to=='DaHuy')t.SoLuongGiuCho=Math.max(0,Math.min(t.SoLuongGiuCho-l.SoLuong,t.SoLuong))});
+  if(p&&to=='DaHuy')p.TrangThai='ThatBai';
+  if(to=='DaGiao'){if(p){p.TrangThai='DaThanhToan';p.NgayThanhToan=now()}if(v)v.NgayGiaoThucTe=now()}
+  o.TrangThai=to;toast('Đơn #'+id+': '+LB[to]);render();
+}
+function ret(id){
+  const ls=DB.ChiTietDonHang.filter(l=>l.MaDonHang==id);
+  modal('Yêu cầu đổi trả đơn #'+id,`<label>Sản phẩm<select id="r_p">${ls.map(l=>`<option value="${l.MaSanPham}">${esc(L('SanPham',l.MaSanPham))} (đã mua ${l.SoLuong})</option>`).join('')}</select></label><label>Số lượng<input id="r_q" type="number" min="1" value="1"></label><label>Lý do<input id="r_l"></label>`,()=>{
+    const l=ls.find(x=>x.MaSanPham==$('#r_p').value),q=+$('#r_q').value;if(!$('#r_l').value.trim())throw new Error('Nhập lý do đổi trả');if(q<1||q>l.SoLuong)throw new Error('Số lượng đổi trả phải từ 1 đến '+l.SoLuong);
+    const y=add('YeuCauDoiTra',{MaDonHang:id,NgayYeuCau:now(),LyDo:$('#r_l').value.trim(),TrangThai:'ChoDuyet'});DB.ChiTietDoiTra.push({MaYeuCau:y.MaYeuCau,MaSanPham:l.MaSanPham,SoLuong:q});
+    DB.DonHang.find(x=>x.MaDonHang==id).TrangThai='DoiTra';toast('Đã gửi yêu cầu đổi trả');
+  },'Gửi yêu cầu');
+}
+function detail(id){
+  const o=DB.DonHang.find(x=>x.MaDonHang==id),ls=DB.ChiTietDonHang.filter(l=>l.MaDonHang==id);
+  modal('Đơn #'+id+' – '+esc(L('KhachHang',o.MaKhachHang)),`<div class="mute">${o.NgayDat.replace('T',' ')} · ${esc(L('ChiNhanh',o.MaChiNhanh))} · NV: ${esc(L('NhanVien',o.MaNhanVien))||'—'}<br>Giao tới: ${esc(o.DiaChiGiao)}</div>`+tbl(['Sản phẩm','SL','Đơn giá','Thành tiền'],ls.map(l=>[esc(L('SanPham',l.MaSanPham)),l.SoLuong,vnd(l.DonGia),vnd(l.SoLuong*l.DonGia)]))
+   +`<div class="row"><span>Tạm tính</span><b>${vnd(sub(id))}</b></div><div class="row"><span>Mã giảm giá ${esc(L('MaGiamGia',o.MaGiamGia))}</span><b>− ${vnd(disc(o))}</b></div><div class="row"><span>Thành tiền</span><b>${vnd(tot(o))}</b></div>`
+   +DB.ThanhToan.filter(x=>x.MaDonHang==id).map(p=>`<div class="row"><span>Thanh toán: ${LB[p.PhuongThuc]}</span>${tag(p.TrangThai)}</div>`).join('')
+   +DB.VanDon.filter(x=>x.MaDonHang==id).map(v=>`<div class="row"><span>Vận đơn ${esc(v.MaVanDonNgoai)} (${esc(L('DonViVanChuyen',v.MaDVVC))})</span><span>${LB[v.LoaiGiao]}</span></div>`).join(''));
+}
+
+/* ===== 7. TỔNG QUAN & TRUY VẤN Q1–Q10 ===== */
+const brandRev=()=>{const b={};DB.ChiTietDonHang.forEach(l=>{if(DB.DonHang.find(x=>x.MaDonHang==l.MaDonHang).TrangThai=='DaHuy')return;const n=L('ThuongHieu',DB.SanPham.find(x=>x.MaSanPham==l.MaSanPham).MaThuongHieu);b[n]=(b[n]||0)+l.SoLuong*l.DonGia});return Object.entries(b).sort((x,y)=>y[1]-x[1])};
+const spl=s=>[esc(s.TenSanPham),vnd(s.GiaBan),esc(s.LoaiDaPhuHop||'—')];
+const Q=[
+['Q1. Sản phẩm đang bán, giá giảm dần',()=>({h:['Sản phẩm','Giá bán','Loại da'],r:DB.SanPham.filter(s=>s.TrangThai=='DangBan').sort((a,b)=>b.GiaBan-a.GiaBan).map(spl)})],
+['Q2. Sản phẩm kèm thương hiệu và danh mục',()=>({h:['Sản phẩm','Thương hiệu','Danh mục','Giá bán'],r:DB.SanPham.map(s=>[esc(s.TenSanPham),esc(L('ThuongHieu',s.MaThuongHieu)),esc(L('DanhMuc',s.MaDanhMuc)),vnd(s.GiaBan)])})],
+['Q3. Kem chống nắng hoặc phù hợp da mụn (LIKE)',()=>({h:['Sản phẩm','Giá bán','Loại da'],r:DB.SanPham.filter(s=>/chống nắng/i.test(s.TenSanPham)||/mụn/i.test(s.LoaiDaPhuHop||'')).map(spl)})],
+['Q4. Đơn hàng đặt trong tháng 3/2026 (BETWEEN)',()=>({h:['Mã','Khách hàng','Ngày đặt','Trạng thái'],r:DB.DonHang.filter(o=>o.NgayDat.startsWith('2026-03')).map(o=>['#'+o.MaDonHang,esc(L('KhachHang',o.MaKhachHang)),o.NgayDat.replace('T',' '),tag(o.TrangThai)])})],
+['Q5. Doanh thu theo thương hiệu, không tính đơn hủy (GROUP BY)',()=>({h:['Thương hiệu','Doanh thu'],r:brandRev().map(([b,v])=>[esc(b),vnd(v)])})],
+['Q6. Khách có từ 2 đơn, tổng chi tiêu trên 1.000.000 (HAVING)',()=>({h:['Khách hàng','Số đơn','Tổng chi tiêu'],r:DB.KhachHang.map(k=>{const os=DB.DonHang.filter(o=>o.MaKhachHang==k.MaKhachHang&&o.TrangThai!='DaHuy');return [k.HoTen,os.length,os.reduce((a,o)=>a+sub(o.MaDonHang),0)]}).filter(x=>x[1]>=2&&x[2]>1e6).map(x=>[esc(x[0]),x[1],vnd(x[2])])})],
+['Q7. Sản phẩm đang bán chưa có đánh giá (LEFT JOIN)',()=>({h:['Mã','Sản phẩm'],r:DB.SanPham.filter(s=>s.TrangThai=='DangBan'&&!DB.DanhGia.some(d=>d.MaSanPham==s.MaSanPham)).map(s=>[s.MaSanPham,esc(s.TenSanPham)])})],
+['Q8. Sản phẩm có giá cao hơn giá trung bình (Subquery)',()=>{const a=DB.SanPham.reduce((x,s)=>x+s.GiaBan,0)/DB.SanPham.length;return {h:['Sản phẩm (TB '+vnd(a)+')','Giá bán'],r:DB.SanPham.filter(s=>s.GiaBan>a).map(s=>[esc(s.TenSanPham),vnd(s.GiaBan)])}}],
+['Q9. Khách đã mua sản phẩm thuộc danh mục Serum (IN)',()=>({h:['Họ tên','Điện thoại'],r:DB.KhachHang.filter(k=>DB.DonHang.some(o=>o.MaKhachHang==k.MaKhachHang&&DB.ChiTietDonHang.some(l=>l.MaDonHang==o.MaDonHang&&L('DanhMuc',DB.SanPham.find(s=>s.MaSanPham==l.MaSanPham).MaDanhMuc)=='Serum'))).map(k=>[esc(k.HoTen),k.SoDienThoai])})],
+['Q10. Danh bạ khách hàng và nhân viên (UNION)',()=>({h:['Họ tên','Điện thoại','Loại'],r:[...DB.KhachHang.map(k=>[esc(k.HoTen),k.SoDienThoai,'Khách hàng']),...DB.NhanVien.map(k=>[esc(k.HoTen),k.SoDienThoai,'Nhân viên'])]})]
+];
+const VIEWS={
+dash(){
+  const ok=DB.DonHang.filter(o=>o.TrangThai!='DaHuy'),rev=ok.reduce((a,o)=>a+tot(o),0),mo={};
+  ok.forEach(o=>{const k=o.NgayDat.slice(0,7);mo[k]=(mo[k]||0)+tot(o)});const ks=Object.keys(mo).sort(),mx=Math.max(...ks.map(k=>mo[k]),1);
+  const low=DB.TonKhoChiNhanh.map(t=>({...t,a:t.SoLuong-t.SoLuongGiuCho})).filter(t=>t.a<=25).sort((x,y)=>x.a-y.a),st={};DB.DonHang.forEach(o=>st[o.TrangThai]=(st[o.TrangThai]||0)+1);
+  const sc=[['orders','🛍️','Đơn hàng','#f59e0b'],['SanPham','💄','Sản phẩm','#8b5cf6'],['KhachHang','👥','Khách hàng','#06b6d4'],['TonKhoChiNhanh','📦','Tồn kho','#ea580c'],['MaGiamGia','🏷️','Mã giảm giá','#16a34a'],['VanDon','🚚','Vận đơn','#2563eb'],['DanhGia','⭐','Đánh giá','#e11d48'],['qry','📊','Truy vấn','#4f46e5']];
+  return `<div class="hero"><div><h2>Chào mừng trở lại!</h2>Hôm nay có <b>${['ChoXacNhan','DaXacNhan','DangGiao'].reduce((a,k)=>a+(st[k]||0),0)}</b> đơn đang chờ xử lý.</div><button onclick="orderForm()">Tạo đơn mới</button></div><div class="sc">${sc.map(([k,e,l,c])=>`<button onclick="go('${k}')"><i style="background:${c}">${e}</i>${l}</button>`).join('')}</div><div class="stats"><div class="card"><span>Doanh thu (không tính đơn hủy)</span><b>${vnd(rev)}</b></div><div class="card"><span>Tổng số đơn</span><b>${DB.DonHang.length}</b></div><div class="card"><span>Đơn đang xử lý</span><b>${['ChoXacNhan','DaXacNhan','DangGiao'].reduce((a,k)=>a+(st[k]||0),0)}</b></div><div class="card"><span>Khách hàng</span><b>${DB.KhachHang.length}</b></div><div class="card"><span>Dòng tồn kho sắp hết (≤25)</span><b>${low.length}</b></div></div>
+  <div class="g2"><div class="card"><h3>Doanh thu theo tháng</h3><div class="chart">${ks.map(k=>`<div title="${vnd(mo[k])}"><i style="height:${mo[k]/mx*100}%"></i>T${+k.slice(5)}</div>`).join('')}</div></div>
+  <div class="card"><h3>Doanh thu theo thương hiệu</h3>${brandRev().map(([b,v])=>`<div class="row"><span>${esc(b)}</span><b>${vnd(v)}</b></div>`).join('')}</div></div>
+  <div class="g2"><div class="card"><h3>Đơn hàng theo trạng thái</h3>${Object.keys(st).map(k=>`<div class="row">${tag(k)}<b>${st[k]}</b></div>`).join('')}</div>
+  <div class="card"><h3>Cần nhập thêm (còn bán được ≤25)</h3>${low.slice(0,6).map(t=>`<div class="row"><span>${esc(L('SanPham',t.MaSanPham))} · ${esc(L('ChiNhanh',t.MaChiNhanh))}</span><span class="tag bad">${t.a}</span></div>`).join('')||'<span class="mute">Tồn kho đều ổn.</span>'}</div></div>`;
+},
+orders(){
+  const rs=[...DB.DonHang].reverse().map(o=>{const id=o.MaDonHang,n=NX[o.TrangThai],p=DB.ThanhToan.find(x=>x.MaDonHang==id);
+    return ['#'+id,o.NgayDat.replace('T',' '),esc(L('KhachHang',o.MaKhachHang)),esc(L('ChiNhanh',o.MaChiNhanh)),vnd(tot(o)),tag(o.TrangThai),p?tag(p.TrangThai):'—',
+    `<button class="s g" onclick="detail(${id})">Chi tiết</button> `+(n?`<button class="s" onclick="step(${id},'${n[0]}')">${n[1]}</button> <button class="s g" onclick="step(${id},'DaHuy')">Hủy</button> `:'')+(o.TrangThai=='DaGiao'?`<button class="s g" onclick="ret(${id})">Đổi trả</button> `:'')+`<button class="s g" onclick="form('DonHang',${DB.DonHang.indexOf(o)})">Sửa</button>`]});
+  return ph('Đơn hàng','Đơn mới giữ chỗ tồn kho; chuyển "Đã giao" mới trừ kho và ghi nhận thanh toán.','<button onclick="orderForm()">＋ Tạo đơn</button>','<span>'+DB.DonHang.length+' đơn</span>')+tbl(['Mã','Ngày đặt','Khách hàng','Chi nhánh','Thành tiền','Trạng thái','Thanh toán',''],rs);
+},
+qry(){const r=Q[S.qi][1]();return `${ph('Truy vấn SQL','Chạy lại 10 truy vấn trong file SQL của nhóm trên dữ liệu hiện có.','')}<div class="bar">${Q.map((q,i)=>`<button class="s ${i==S.qi?'':'g'}" onclick="S.qi=${i};render()">Q${i+1}</button>`).join('')}</div><p class="mute">${Q[S.qi][0]}</p>`+tbl(r.h,r.r)}
+};
+const NAV=[['Tổng quan',[['dash','Tổng quan']]],['Bán hàng',[['orders','Đơn hàng'],['ChiTietDonHang'],['ThanhToan'],['VanDon'],['YeuCauDoiTra'],['ChiTietDoiTra'],['DanhGia']]],['Sản phẩm',[['SanPham'],['ThuongHieu'],['DanhMuc'],['MaGiamGia']]],['Kho và nhân sự',[['TonKhoChiNhanh'],['ChiNhanh'],['NhanVien'],['DonViVanChuyen']]],['Khách hàng',[['KhachHang']]],['Báo cáo',[['qry','Truy vấn SQL']]]];
+const go=k=>{view=k;S.q='';S.pg=0;S.f={};S.sel.clear();render()};
+function render(){
+  const gi=NAV.findIndex(([,it])=>it.some(x=>x[0]==view)),np=DB.DonHang.filter(o=>o.TrangThai=='ChoXacNhan').length;
+  $('#hd').innerHTML=`<div class="brand"><div class="bi">🧴</div><div><b>Mỹ Phẩm Online<em>QUẢN TRỊ</em></b><small>Hệ thống quản trị bán hàng và tồn kho tập trung</small></div></div><div class="srch"><span>⌕</span><input id="gs" placeholder="Tìm theo tên mỹ phẩm, thương hiệu… (nhấn / để tìm)" onkeydown="if(event.key=='Enter'){view='SanPham';S.q=this.value;S.pg=0;S.f={};S.sel.clear();render()}"><kbd>/</kbd></div><div class="chip"><span>🛍️</span><div><b>${np} đơn</b>Chờ xác nhận</div></div><div class="chip"><span>👥</span><div><b>${DB.KhachHang.length}</b>Khách hàng</div></div><div class="user"><div class="av">QT</div><div><b>Quản trị viên</b>Shop mỹ phẩm</div></div>`;
+  $('#gn').innerHTML=NAV.map(([g,it],k)=>`<button class="${k==gi?'on':''}" onclick="go('${it[0][0]}')">${k==gi?'● ':''}${g}</button>`).join('');
+  $('#sn').innerHTML=NAV[gi][1].map(([k,l])=>`<button class="${k==view?'on':''}" onclick="go('${k}')">${l||T[k].n}</button>`).join('')+`<span class="sy">● Cập nhật lúc ${now().slice(11)}</span>`;
+  if(T[view])listPage(view);
+  else $('#main').innerHTML=VIEWS[view]();
+}
+const D={ThuongHieu:'Quản lý các thương hiệu mỹ phẩm và xuất xứ.',DanhMuc:'Phân nhóm sản phẩm để tìm kiếm và báo cáo.',ChiNhanh:'Các cửa hàng và kho của hệ thống.',DonViVanChuyen:'Đối tác giao hàng và số điện thoại liên hệ.',SanPham:'Danh sách sản phẩm, giá bán, giá khuyến mãi và trạng thái kinh doanh.',KhachHang:'Thông tin khách hàng và điểm tích lũy.',NhanVien:'Nhân viên theo từng chi nhánh.',TonKhoChiNhanh:'Theo dõi số lượng khả dụng, hàng đặt giữ trước và cảnh báo nhập hàng theo chi nhánh.',MaGiamGia:'Mã khuyến mãi, điều kiện áp dụng và thời hạn sử dụng.',ChiTietDonHang:'Các dòng sản phẩm trong từng đơn, đơn giá lưu tại thời điểm bán.',ThanhToan:'Phương thức và trạng thái thanh toán của từng đơn.',VanDon:'Vận đơn, đơn vị vận chuyển và thời gian giao hàng.',YeuCauDoiTra:'Yêu cầu đổi trả và tiến độ xử lý.',ChiTietDoiTra:'Sản phẩm và số lượng trong từng yêu cầu đổi trả.',DanhGia:'Đánh giá của khách sau khi nhận hàng, kèm trạng thái duyệt hiển thị.',DonHang:'Thông tin chung của đơn hàng.'};
+for(const k in D)T[k].d=D[k];
+T.SanPham.sub=r=>L('ThuongHieu',r.MaThuongHieu);T.KhachHang.sub=r=>r.Email||'';T.NhanVien.sub=r=>r.ChucVu||'';
+T.TonKhoChiNhanh.head=['Sản phẩm & thương hiệu','Danh mục','Chi nhánh','Đơn giá','Tồn khả dụng','Giữ chỗ','Trạng thái'];
+T.TonKhoChiNhanh.cells=r=>{const p=SP(r.MaSanPham),a=r.SoLuong-r.SoLuongGiuCho,k=kst(r);return [`<div class="nm">${esc(p.TenSanPham)}<small>${esc(L('ThuongHieu',p.MaThuongHieu))}</small></div>`,`<span class="cat">${esc(L('DanhMuc',p.MaDanhMuc))}</span>`,'📍 '+esc(L('ChiNhanh',r.MaChiNhanh)),`<b>${vnd(p.GiaKhuyenMai||p.GiaBan)}</b>`,`<b>${a}</b><div class="pb"><i style="width:${Math.min(100,a)}%"></i></div>`,`<span class="tag wn">${r.SoLuongGiuCho}</span>`,`<span class="tag ${k=='con'?'ok':k=='sap'?'wn':'bad'}">${{con:'Còn hàng',sap:'Sắp hết',het:'Hết hàng'}[k]}</span>`]};
+T.TonKhoChiNhanh.vf=[{k:'cn',l:'Tất cả chi nhánh',o:()=>DB.ChiNhanh.map(c=>[c.MaChiNhanh,c.TenChiNhanh]),t:(r,v)=>r.MaChiNhanh==v},{k:'dm',l:'Tất cả danh mục',o:()=>DB.DanhMuc.map(d=>[d.MaDanhMuc,d.TenDanhMuc]),t:(r,v)=>SP(r.MaSanPham).MaDanhMuc==v},{k:'tt',l:'Mọi trạng thái kho',o:()=>[['con','Còn hàng'],['sap','Sắp hết'],['het','Hết hàng']],t:(r,v)=>kst(r)==v}];
+document.addEventListener('keydown',e=>{if(e.key=='/'&&!/INPUT|SELECT|TEXTAREA/.test(document.activeElement.tagName)){e.preventDefault();$('#gs').focus()}});
+render();
+</script>
+</body>
+</html>
